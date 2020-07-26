@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bootstrap-otp',
@@ -50,14 +50,15 @@ export class BootstrapOtpComponent implements OnInit {
       this.code.codes.forEach((item: any) => {
         code += item.value;
       });
-      window['code'] = code;
+      const result: string = this.configs['result'];
+      window[result] = code;
     }, 0);
   }
 
-  paste() {
+  paste(index: number) {
     this.pasted = false;
     const getValue = setInterval(() => {
-      const value = this.code.codes[0].value;
+      const value = this.code.codes[index].value;
       if (value != null) {
         if (value.length == this.code.codes.length) {
           this.code.codes.forEach((item: any, index: number) => {
@@ -76,8 +77,29 @@ export class BootstrapOtpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.configs == undefined) {
+      this.configs = {
+        length: 4,
+        type: 'text',
+        result: 'bootstrap-otp'
+      }
+    }
+
+    if (!this.configs.result) {
+      this.configs.result = 'bootstrap-otp';
+    }
+
+    if (!this.configs.type) {
+      this.configs.type = 'text';
+    }
+
+    if (this.configs.type != 'text' && this.configs.type != 'tel' && this.configs.type != 'number') {
+      console.warn('select type from [text, tel, number]');
+      throw new Error('your type is not valid for otp access');
+    }
+
     for (let index = 0; index < this.configs.length; index++) {
-      const object: inner = {
+      const object = {
         index: index,
         current: 'code' + index,
         value: null,
@@ -98,12 +120,4 @@ export class BootstrapOtpComponent implements OnInit {
       document.removeEventListener('DOMMouseScroll', null);
     }, 0);
   }
-}
-
-interface inner {
-  index: number,
-  current: string,
-  value: string,
-  prev: string,
-  next: string
 }
