@@ -4,7 +4,7 @@
 
 <p>template based on bootstrap, so you can change it simply:<p>
  
- ![Alt Text](https://media.giphy.com/media/H4oN7i9IoAZQ5MUu2X/giphy.gif)
+ ![bootstrap-otp](https://media.giphy.com/media/H4oN7i9IoAZQ5MUu2X/giphy.gif)
  
  ```
   <div class="row">
