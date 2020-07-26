@@ -1,10 +1,10 @@
 <div class="row" dir="ltr" *ngIf="code">
     <div class="col px-1" *ngFor="let code of code.codes;index as index">
-        <input [type]="configs.type" [min]="0" max="9" size="1" class="form-control text-center" [attr.id]="code.current"
-            [(ngModel)]="code.value" [ngModelOptions]="{standalone: true}"
-            (paste)="index == 0 ? paste() : null" (click)="setValue(code, code.current)"
-            (keyup)="goToNext($event, code.next, code.prev)" (keypress)="setValue(code)"
-            [maxLength]="index == 0 ? (pasted ? 1 : 6) : 1" [tabindex]="index + 1"
+        <input [type]="configs.type" [min]="0" max="9" size="1" class="form-control text-center"
+            [attr.id]="code.current" [(ngModel)]="code.value"
+            [ngModelOptions]="{standalone: true}" (paste)="paste(index)"
+            (click)="setValue(code, code.current)" (keyup)="goToNext($event, code.next, code.prev)"
+            (keypress)="setValue(code)" [maxLength]="index == 0 ? (pasted ? 1 : 6) : 1" [tabindex]="index + 1"
             autocomplete="off" />
     </div>
 </div>
