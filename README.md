@@ -1,6 +1,6 @@
 # bootstrap-otp
 
-<p>bootstrap-otp is an easy and fast component to handle your <b>OTP</b> page</p>
+<p>bootstrap-otp is an easy and fast component to handle your <b>OTP</b> page, created for angular type script</p>
 
 <p>template based on bootstrap, so you can change it simply:<p>
  
